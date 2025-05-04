@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Fonte principal para o projeto */
+body {
+  margin: 0;
+  font-family: 'Orbitron', Arial, sans-serif;
+}

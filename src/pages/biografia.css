@@ -1,0 +1,76 @@
+.biografia-section {
+  background: #1b1b1b;
+  padding: 80px 20px;
+  color: #fff;
+  text-align: center;
+}
+
+.biografia-titulo {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 40px;
+  color: #00bfff;
+  text-transform: uppercase;
+  text-align: center; /* centraliza totalmente */
+  width: 100%;
+}
+
+.jogadores-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.jogador-card {
+  background-color: #2a2a2a;
+  border: 2px solid #00bfff;
+  border-radius: 16px;
+  width: 280px;
+  padding: 20px;
+  transition: transform 0.3s;
+}
+
+.jogador-card:hover {
+  transform: scale(1.05);
+}
+
+.jogador-img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 15px;
+}
+
+.jogador-nome {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.jogador-bio {
+  font-size: 1rem;
+  margin-bottom: 12px;
+  color: #ccc;
+}
+
+.redes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.redes a {
+  font-size: 0.95rem;
+  color: #00bfff;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.redes a:hover {
+  color: #ffffff;
+}
