@@ -3,8 +3,7 @@ import { motion } from "framer-motion";
 import Chat from "./Chat";
 import PlayerCards from "./PlayerCards";
 import MapCards from "./MapCards";
-import Noticias from "./pages/Noticias"; // IMPORTANTE
-import "../../home.css";
+import Noticias from "./pages/Noticias";
 
 
 const images = [

@@ -71,7 +71,6 @@ export default function Biografia() {
     <section id="jogadores" className="biografia-section">
       <h2 className="biografia-titulo">Biografia dos Jogadores</h2>
 
-      {/* Grid geral dividido automaticamente em 2 linhas de 3 cards */}
       <div className="jogadores-grid">
         {jogadores.map((jogador, index) => (
           <div key={index} className="jogador-card">
