@@ -1,4 +1,3 @@
-// src/pages/Agenda.jsx
 import React from "react";
 import "./agenda.css";
 
