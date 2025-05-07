@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import "./playerCards.css";
+import "./PlayerCards.css";
 
 const players = [
   {
