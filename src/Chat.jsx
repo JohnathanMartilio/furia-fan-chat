@@ -7,6 +7,7 @@ import ksceratoImg from "/assets/kscerato.png";
 import yekindarImg from "/assets/yekindar.png";
 import molodoyImg from "/assets/molodoy.png";
 
+
 const jogadores = {
   fallen: {
     nome: "Gabriel 'FalleN' Toledo",
