@@ -5,31 +5,18 @@ body {
   background-color: black;
 }
 
-/* Fundo desfocado + degradê suave */
-.fundo-imagem-furia {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-size: cover;
-  background-position: center;
-  z-index: -2;
-  opacity: 0.15;
-  filter: blur(2px);
-}
-
+/* Degradê escuro nas bordas */
 .overlay-degrade {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: radial-gradient(circle, rgba(0, 0, 0, 0.7) 30%, rgba(0, 0, 0, 0.95) 100%);
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.7) 30%, rgba(0, 0, 0, 1) 100%);
   z-index: -1;
 }
 
-/* Container principal com imagens nas laterais */
+/* Conteúdo principal com imagens nas laterais */
 .main-content {
   position: relative;
   z-index: 10;
@@ -41,7 +28,6 @@ body {
   background: transparent;
 }
 
-/* Imagem do lado esquerdo */
 .main-content::before,
 .main-content::after {
   content: "";

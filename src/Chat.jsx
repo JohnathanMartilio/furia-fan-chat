@@ -55,6 +55,14 @@ const jogadores = {
   },
 };
 
+const secoes = {
+  noticias: "📰 Você pode acessar as últimas notícias na seção 'Notícias' da página.",
+  estatisticas: "📊 As estatísticas do time estão disponíveis na seção 'Estatísticas'.",
+  jogadores: "👥 Quer saber sobre os jogadores? Role até a seção 'Biografia dos Jogadores'.",
+  agenda: "📅 A agenda dos próximos jogos está disponível na seção 'Agenda'.",
+  assistir: "🎥 Você pode assistir aos jogos ao vivo clicando em 'ASSISTIR OS JOGOS AO VIVO 🔴'.",
+};
+
 export default function Chat() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([]);
@@ -66,6 +74,9 @@ export default function Chat() {
 
     const inputLower = userInput.toLowerCase();
     const foundPlayer = Object.keys(jogadores).find((key) =>
+      inputLower.includes(key)
+    );
+    const foundSecao = Object.keys(secoes).find((key) =>
       inputLower.includes(key)
     );
 
@@ -84,12 +95,20 @@ export default function Chat() {
             image: player.imagem,
           },
         ]);
+      } else if (foundSecao) {
+        setMessages((prev) => [
+          ...prev,
+          {
+            type: "bot",
+            text: secoes[foundSecao],
+          },
+        ]);
       } else {
         setMessages((prev) => [
           ...prev,
           {
             type: "bot",
-            text: "❓ Não encontrei informações sobre isso. Você pode perguntar sobre um jogador da FURIA!",
+            text: "❓ Não encontrei informações sobre isso. Você pode perguntar sobre um jogador da FURIA ou usar palavras como 'notícias', 'estatísticas', 'agenda' ou 'assistir'.",
           },
         ]);
       }
@@ -143,7 +162,7 @@ export default function Chat() {
                   <img
                     src={fofuriaIcon}
                     alt="fofuria"
-                    className="w-10 h-10 flex-shrink-0"
+                    className="w-12 h-12 flex-shrink-0"
                   />
                   <div>
                     <p className="text-sm font-bold text-purple-600">

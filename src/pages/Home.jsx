@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 import Chat from "../Chat";
@@ -10,23 +10,32 @@ import Estatisticas from "./Estatisticas";
 import Agenda from "./agenda";
 import "./home.css";
 
-const images = [
-  "/assets/furia1.png",
-  "/assets/furia2.png",
-  "/assets/furia3.png",
-  "/assets/furia4.png",
-  "/assets/furia5.png",
+const backgroundImages = [
+  "/assets/final/pantera.png",
+  "/assets/final/pantera2.png",
+  "/assets/final/pantera3.png",
+  "/assets/final/pantera4.png",
+  "/assets/final/pantera5.png",
+  "/assets/final/pantera6.png",
 ];
 
 export default function Home() {
-  const [currentImage, setCurrentImage] = useState(0);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [previousImageIndex, setPreviousImageIndex] = useState(null);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImage((prev) => (prev + 1) % images.length);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, []);
+    const timer = setTimeout(() => {
+      setPreviousImageIndex(currentImageIndex);
+      setCurrentImageIndex((prev) => (prev + 1) % backgroundImages.length);
+    }, 6000);
+
+    return () => clearTimeout(timer);
+  }, [currentImageIndex]);
+
+  const currentImage = backgroundImages[currentImageIndex];
+  const previousImage = previousImageIndex !== null ? backgroundImages[previousImageIndex] : null;
+
+  const isPantera = currentImage.includes("pantera.png");
 
   const opcoes = [
     { nome: "Notícias", id: "noticias" },
@@ -41,9 +50,58 @@ export default function Home() {
 
   return (
     <div className="relative min-h-screen text-white overflow-hidden">
-      <div className="fundo-imagem-furia"></div>
+
+      {/* IMAGEM ANTERIOR (fade-out) */}
+      {previousImage && (
+        <motion.div
+          key={previousImage}
+          initial={{ opacity: 1 }}
+          animate={{ opacity: 0 }}
+          transition={{ duration: 1.2, ease: "easeInOut" }}
+          style={{
+            backgroundImage: `url('${previousImage}')`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100vw",
+            height: "100vh",
+            zIndex: -3,
+          }}
+        />
+      )}
+
+      {/* IMAGEM ATUAL (fade-in + animação se for a pantera principal) */}
+      <motion.div
+        key={currentImage}
+        initial={{ opacity: 0 }}
+        animate={{
+          opacity: 1,
+          ...(isPantera ? { y: [0, -10, 0] } : {}),
+        }}
+        transition={{
+          duration: 1.2,
+          ease: "easeInOut",
+          ...(isPantera ? { repeat: Infinity, repeatType: "reverse" } : {}),
+        }}
+        style={{
+          backgroundImage: `url('${currentImage}')`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100vw",
+          height: "100vh",
+          zIndex: -2,
+        }}
+      />
+
+      {/* Degradê sobre tudo */}
       <div className="overlay-degrade"></div>
 
+      {/* CONTEÚDO PRINCIPAL */}
       <div className="relative z-10 flex flex-col items-center justify-start min-h-screen p-10 pt-20 main-content">
         <h1 className="text-3xl md:text-5xl font-bold mb-4 text-center text-white">
           🔥 Seja Bem-Vindo Furioso! 🔥
