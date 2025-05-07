@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 import Chat from "../Chat";
-import playerCards from "../playerCards";
+import PlayerCards from "../PlayerCards";
 import MapCards from "../MapCards";
 import NoticiasList from "./NoticiasList";
 import Biografia from "./BiografiaJogadores";
