@@ -8,7 +8,7 @@ import NoticiasList from "./NoticiasList";
 import Biografia from "./BiografiaJogadores";
 import Estatisticas from "./Estatisticas";
 import Agenda from "./agenda";
-import "./home.css"; // ✅ garante que os estilos de fundo funcionem
+import "./home.css";
 
 const images = [
   "/assets/final/pantera.png",
@@ -21,13 +21,31 @@ const images = [
 
 export default function Home() {
   const [currentImage, setCurrentImage] = useState(0);
+  const [loaded, setLoaded] = useState(false);
 
+  // Pré-carrega as imagens
   useEffect(() => {
+    let loadedCount = 0;
+    images.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+      img.onload = () => {
+        loadedCount++;
+        if (loadedCount === images.length) {
+          setLoaded(true);
+        }
+      };
+    });
+  }, []);
+
+  // Slideshow
+  useEffect(() => {
+    if (!loaded) return;
     const interval = setInterval(() => {
       setCurrentImage((prev) => (prev + 1) % images.length);
     }, 4000);
     return () => clearInterval(interval);
-  }, []);
+  }, [loaded]);
 
   const opcoes = [
     { nome: "Notícias", id: "noticias" },
@@ -42,16 +60,30 @@ export default function Home() {
 
   return (
     <div className="relative min-h-screen text-white overflow-hidden">
-      {/* Fundo dinâmico */}
-      <div
-        className="fundo-imagem-furia"
-        style={{
-          backgroundImage: `url(${images[currentImage]})`,
-        }}
-      />
-      <div className="overlay-degrade" />
+      {/* Fundo corrigido com estilo inline */}
+      {loaded &&
+        images.map((img, index) => (
+          <div
+            key={index}
+            style={{
+              backgroundImage: `url(${img})`,
+              position: "fixed",
+              top: 0,
+              left: 0,
+              width: "100vw",
+              height: "100vh",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+              transition: "opacity 1s ease-in-out",
+              zIndex: 0,
+              opacity: index === currentImage ? 1 : 0,
+            }}
+          />
+        ))}
 
-      {/* Conteúdo principal */}
+      <div className="overlay-degrade"></div>
+
       <div className="relative z-10 flex flex-col items-center justify-start min-h-screen p-10 pt-20 main-content">
         <h1 className="text-3xl md:text-5xl font-bold mb-4 text-center text-white">
           🔥 Seja Bem-Vindo Furioso! 🔥
@@ -64,7 +96,6 @@ export default function Home() {
           <span className="text-pink-400">✨</span>
         </p>
 
-        {/* Botões de navegação */}
         <div className="flex flex-wrap justify-center gap-4 mb-12">
           {opcoes.map((opcao, index) => (
             <motion.button
@@ -88,7 +119,6 @@ export default function Home() {
           ))}
         </div>
 
-        {/* Seções */}
         <PlayerCards />
         <MapCards />
 
