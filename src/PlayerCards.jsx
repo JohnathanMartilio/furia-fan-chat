@@ -54,7 +54,7 @@ export default function PlayerCards() {
     <div className="flex justify-center flex-wrap gap-6 p-4">
       {players.map((player, index) => (
         <div key={index} className="flex flex-col items-center">
-          <h2 className="text-white text-lg font-extrabold mb-2 drop-shadow-md tracking-wide">
+          <h2 className="text-white text-xl font-extrabold mb-2 tracking-wide px-3 py-1 bg-black bg-opacity-50 rounded">
             {player.name}
           </h2>
 
@@ -77,7 +77,7 @@ export default function PlayerCards() {
                     src={player.video}
                     className="w-full h-full object-cover rounded-xl"
                     controls={false}
-                    muted={false}
+                    autoPlay
                     playsInline
                   />
                 ) : (

@@ -42,15 +42,19 @@ export default function Home() {
 
   return (
     <div className="relative min-h-screen text-white overflow-hidden">
+      {/* IMAGEM DE FUNDO ANIMADA */}
       <div
         className="fundo-imagem-furia"
         style={{
           backgroundImage: `url(${images[currentImage]})`,
-          transition: "background-image 1s ease-in-out",
+          transition: "background-image 3s ease-in-out",
         }}
       ></div>
+
+      {/* DEGRADÊ NAS LATERAIS */}
       <div className="overlay-degrade"></div>
 
+      {/* CONTEÚDO PRINCIPAL */}
       <div className="relative z-10 flex flex-col items-center justify-start min-h-screen p-10 pt-20 main-content">
         <h1 className="text-3xl md:text-5xl font-bold mb-4 text-center text-white">
           🔥 Seja Bem-Vindo Furioso! 🔥
@@ -60,9 +64,10 @@ export default function Home() {
           Fique por dentro de tudo que rola com o time de CS da{" "}
           <span className="text-cyan-400 font-bold">FURIA</span>. <br />
           Notícias, jogos, stats e emoção em cada rodada!{" "}
-          <span className="text-pink-400">✨</span>
+          <span className="text-pink-450">✨</span>
         </p>
 
+        {/* BOTÕES DE NAVEGAÇÃO */}
         <div className="flex flex-wrap justify-center gap-4 mb-12">
           {opcoes.map((opcao, index) => (
             <motion.button
@@ -86,6 +91,7 @@ export default function Home() {
           ))}
         </div>
 
+        {/* CARDS */}
         <PlayerCards />
         <MapCards />
 
@@ -111,6 +117,7 @@ export default function Home() {
           <Agenda />
         </div>
 
+        {/* CHAT DA FOFURIA */}
         <Chat />
       </div>
     </div>
