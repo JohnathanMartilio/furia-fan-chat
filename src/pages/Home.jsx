@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 import Chat from "../Chat";
-import PlayerCards from "../PlayerCards";
+import playerCards from "../playerCards";
 import MapCards from "../MapCards";
 import NoticiasList from "./NoticiasList";
 import Biografia from "./BiografiaJogadores";
@@ -10,7 +10,7 @@ import Estatisticas from "./Estatisticas";
 import Agenda from "./agenda";
 import "./home.css";
 
-const backgroundImages = [
+const images = [
   "/assets/final/pantera.png",
   "/assets/final/pantera2.png",
   "/assets/final/pantera3.png",
@@ -20,22 +20,14 @@ const backgroundImages = [
 ];
 
 export default function Home() {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [previousImageIndex, setPreviousImageIndex] = useState(null);
+  const [currentImage, setCurrentImage] = useState(0);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setPreviousImageIndex(currentImageIndex);
-      setCurrentImageIndex((prev) => (prev + 1) % backgroundImages.length);
-    }, 6000);
-
-    return () => clearTimeout(timer);
-  }, [currentImageIndex]);
-
-  const currentImage = backgroundImages[currentImageIndex];
-  const previousImage = previousImageIndex !== null ? backgroundImages[previousImageIndex] : null;
-
-  const isPantera = currentImage.includes("pantera.png");
+    const interval = setInterval(() => {
+      setCurrentImage((prev) => (prev + 1) % images.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
 
   const opcoes = [
     { nome: "Notícias", id: "noticias" },
@@ -50,58 +42,15 @@ export default function Home() {
 
   return (
     <div className="relative min-h-screen text-white overflow-hidden">
-
-      {/* IMAGEM ANTERIOR (fade-out) */}
-      {previousImage && (
-        <motion.div
-          key={previousImage}
-          initial={{ opacity: 1 }}
-          animate={{ opacity: 0 }}
-          transition={{ duration: 1.2, ease: "easeInOut" }}
-          style={{
-            backgroundImage: `url('${previousImage}')`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            position: "fixed",
-            top: 0,
-            left: 0,
-            width: "100vw",
-            height: "100vh",
-            zIndex: -3,
-          }}
-        />
-      )}
-
-      {/* IMAGEM ATUAL (fade-in + animação se for a pantera principal) */}
-      <motion.div
-        key={currentImage}
-        initial={{ opacity: 0 }}
-        animate={{
-          opacity: 1,
-          ...(isPantera ? { y: [0, -10, 0] } : {}),
-        }}
-        transition={{
-          duration: 1.2,
-          ease: "easeInOut",
-          ...(isPantera ? { repeat: Infinity, repeatType: "reverse" } : {}),
-        }}
+      <div
+        className="fundo-imagem-furia"
         style={{
-          backgroundImage: `url('${currentImage}')`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          position: "fixed",
-          top: 0,
-          left: 0,
-          width: "100vw",
-          height: "100vh",
-          zIndex: -2,
+          backgroundImage: `url(${images[currentImage]})`,
+          transition: "background-image 1s ease-in-out",
         }}
-      />
-
-      {/* Degradê sobre tudo */}
+      ></div>
       <div className="overlay-degrade"></div>
 
-      {/* CONTEÚDO PRINCIPAL */}
       <div className="relative z-10 flex flex-col items-center justify-start min-h-screen p-10 pt-20 main-content">
         <h1 className="text-3xl md:text-5xl font-bold mb-4 text-center text-white">
           🔥 Seja Bem-Vindo Furioso! 🔥
@@ -137,7 +86,7 @@ export default function Home() {
           ))}
         </div>
 
-        <PlayerCards />
+        <playerCards />
         <MapCards />
 
         <div id="jogadores" className="w-full mt-10">
