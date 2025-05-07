@@ -86,7 +86,7 @@ export default function Home() {
           ))}
         </div>
 
-        <playerCards />
+        <PlayerCards />
         <MapCards />
 
         <div id="jogadores" className="w-full mt-10">
