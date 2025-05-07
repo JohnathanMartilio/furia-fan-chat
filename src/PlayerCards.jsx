@@ -33,11 +33,19 @@ export default function PlayerCards() {
   const [flippedIndex, setFlippedIndex] = useState(null);
   const videoRefs = useRef([]);
 
+  const handleFlip = (index) => {
+    setFlippedIndex(flippedIndex === index ? null : index);
+  };
+
   useEffect(() => {
     videoRefs.current.forEach((video, idx) => {
       if (video) {
         if (idx === flippedIndex) {
-          video.play().catch(() => {});
+          // Adicionamos pequena espera para suavizar
+          setTimeout(() => {
+            video.currentTime = 0;
+            video.play().catch(() => {});
+          }, 50);
         } else {
           video.pause();
           video.currentTime = 0;
@@ -46,15 +54,11 @@ export default function PlayerCards() {
     });
   }, [flippedIndex]);
 
-  const handleFlip = (index) => {
-    setFlippedIndex(flippedIndex === index ? null : index);
-  };
-
   return (
     <div className="flex justify-center flex-wrap gap-6 p-4">
       {players.map((player, index) => (
         <div key={index} className="flex flex-col items-center">
-          <h2 className="text-white text-xl font-extrabold mb-2 tracking-wide px-3 py-1 bg-black bg-opacity-50 rounded">
+          <h2 className="text-white text-xl font-extrabold mb-2 tracking-wider bg-black bg-opacity-50 px-4 py-1 rounded-md">
             {player.name}
           </h2>
 
@@ -77,8 +81,14 @@ export default function PlayerCards() {
                     src={player.video}
                     className="w-full h-full object-cover rounded-xl"
                     controls={false}
-                    autoPlay
+                    muted={false}
                     playsInline
+                    preload="auto"
+                    onCanPlay={(e) => {
+                      // Garante que só mostra o vídeo quando estiver pronto
+                      e.target.style.visibility = "visible";
+                    }}
+                    style={{ visibility: "hidden" }}
                   />
                 ) : (
                   <p className="text-white text-center p-4">
