@@ -9,6 +9,9 @@ import Biografia from "./BiografiaJogadores";
 import Estatisticas from "./Estatisticas";
 import Agenda from "./agenda";
 import "./home.css";
+import KnowYourFan from "../KnowYourFan";
+
+
 
 const images = [
   "/assets/final/pantera.png",
@@ -137,6 +140,7 @@ export default function Home() {
             transition={{ duration: 0.8 }}
           >
             <Estatisticas />
+            <KnowYourFan />
           </motion.div>
         </div>
 
