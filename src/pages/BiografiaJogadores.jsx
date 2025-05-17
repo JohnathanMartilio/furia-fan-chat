@@ -5,7 +5,7 @@ export default function Biografia() {
   const jogadores = [
     {
       nome: 'Gabriel "FalleN" Toledo',
-      funcao: "AWPer / IGL · 🇧🇷",
+      funcao: "Suport / IGL · 🇧🇷",
       bio: "Bicampeão de Major, fundador da Games Academy e Fallen Store.",
       img: "/assets/players/jg-fallen.png",
       redes: [
@@ -39,7 +39,7 @@ export default function Biografia() {
     },
     {
       nome: 'Mareks "YEKINDAR" Gaļinskis',
-      funcao: "Rifler · 🇱🇻",
+      funcao: "Rifler ( Entry Fragger) · 🇱🇻",
       bio: "Top 8 do mundo em 2021, ex-Virtus.pro e Liquid.",
       img: "/assets/players/jg-yekindar.png",
       redes: [
@@ -49,8 +49,8 @@ export default function Biografia() {
     },
     {
       nome: 'Viacheslav "molodoy" Britvin',
-      funcao: "Assistente Técnico · 🇷🇺",
-      bio: "Entrou como parte da nova comissão técnica da FURIA em 2024.",
+      funcao: "Atualmente Awp na Furia · kz",
+      bio: "Uma grande promessa, molodoy entra na furia, para ser o novo AWP da equipe.",
       img: "/assets/players/jg-molodoy.png",
       redes: [
         { nome: "Instagram", link: "https://www.instagram.com/danil.molodoy_" }
