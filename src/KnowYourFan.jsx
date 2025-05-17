@@ -51,7 +51,7 @@ const KnowYourFan = () => {
         <textarea name="idade" onChange={handleChange} placeholder="Quantos anos você tem ?" className="w-full p-2 rounded bg-zinc-800" rows={2} />
         <textarea name="email" onChange={handleChange} placeholder="Qual o seu melhor e-mail ?" className="w-full p-2 rounded bg-zinc-800" rows={2} />
         <textarea name="eventos" onChange={handleChange} placeholder="já participou de um algum evento de CS ao vivo ?" className="w-full p-2 rounded bg-zinc-800" rows={2} />
-        <textarea name="compras" onChange={handleChange} placeholder="Compras relacionadas ao CS ?" className="w-full p-2 rounded bg-zinc-800" rows={2} />
+        <textarea name="compras" onChange={handleChange} placeholder="Já Comprou algo da FURIA?" className="w-full p-2 rounded bg-zinc-800" rows={2} />
         <button type="submit" className="w-full bg-fuchsia-600 hover:bg-fuchsia-700 p-2 rounded font-bold mt-4">Enviar</button>
       </form>
 
