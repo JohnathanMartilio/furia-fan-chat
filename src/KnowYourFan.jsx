@@ -17,12 +17,12 @@ const KnowYourFan = () => {
   useEffect(() => {
     let novaMensagem = "Ei, fã da FURIA! Vamos te conhecer melhor? 👀";
 
-    if (formData.nome && !formData.cpf) novaMensagem = "Boa, já sei seu nome! Bora pro CPF agora!";
+    if (formData.nome && !formData.cpf) novaMensagem = "Boa, já sei seu nome! Bora pro CPF agora! ";
     else if (formData.cpf && !formData.endereco) novaMensagem = "Show! Já posso te levar pra um evento VIP?";
     else if (formData.endereco && !formData.idade) novaMensagem = "Onde você mora tem panteras?";
-    else if (formData.idade && !formData.email) novaMensagem = " Nossa que legal. Posso te chamar de irmão mais velho ? "
+    else if (formData.idade && !formData.email) novaMensagem = " Nossa que legal. Posso te chamar de irmão mais velho? "
     else if (formData.email && !formData.eventos) novaMensagem = "Que legal maninho, podemos nos falar todos os dias agora"
-    else if (formData.eventos && !formData.compras) novaMensagem = "Está sendo facinante te conhecer melhor."
+    else if (formData.eventos && !formData.compras) novaMensagem = "Está sendo INCRIVEL te conhecer melhor."
     else if (formData.compras) novaMensagem = "UAU! Você é um fãn raiz mesmo! A Pantera vai curtir! Seja Bem-vindo ao clube";
 
     setMensagemMascote(novaMensagem);
