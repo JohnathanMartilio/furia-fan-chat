@@ -16,6 +16,7 @@ const KnowYourFan = () => {
     instagram: '',
     youtube: '',
     twitch: '',
+    perfilEsports: '',
   });
 
   const [mensagemMascote, setMensagemMascote] = useState("Ei, fã da FURIA! Vamos te conhecer melhor? 👀");
@@ -50,7 +51,7 @@ const KnowYourFan = () => {
     e.preventDefault();
 
     if (formData.documento) {
-      setMensagemMascote("📑 Verificando seu documento com inteligência artificial...");
+      setMensagemMascote("📁 Verificando seu documento com inteligência artificial...");
 
       setTimeout(() => {
         const nomeBate = formData.nome.toLowerCase().includes("a") || formData.nome.length > 5;
@@ -64,7 +65,7 @@ const KnowYourFan = () => {
           setMensagemMascote("😿 Não conseguimos validar seu documento. Quer tentar de novo?");
         }
 
-        // Análise das redes sociais
+        // Redes sociais
         if (formData.twitter || formData.instagram || formData.youtube || formData.twitch) {
           setMensagemMascote("🔍 Analisando suas redes sociais com IA...");
 
@@ -80,6 +81,20 @@ const KnowYourFan = () => {
               setMensagemMascote("🎯 Detectamos atividade relacionada à FURIA nas suas redes! Você é um verdadeiro furioso online!");
             } else {
               setMensagemMascote("👀 Suas redes sociais parecem estar tranquilas... que tal postar mais sobre a FURIA?");
+            }
+          }, 2000);
+        }
+
+        // Perfil eSports
+        if (formData.perfilEsports) {
+          setMensagemMascote("🔍 Verificando seu perfil de eSports com IA...");
+
+          setTimeout(() => {
+            const link = formData.perfilEsports.toLowerCase();
+            if (link.includes("hltv") || link.includes("faceit") || link.includes("steam")) {
+              setMensagemMascote("🔥 Seu perfil é relevante e mostra sua paixão por CS. Fã nível global!");
+            } else {
+              setMensagemMascote("🤔 Hmm... não conseguimos confirmar atividade de eSports nesse link. Verifique se colou o link certo!");
             }
           }, 2000);
         }
@@ -106,7 +121,6 @@ const KnowYourFan = () => {
         <textarea name="eventos" onChange={handleChange} placeholder="Já participou de algum evento de CS ao vivo?" className="w-full p-2 rounded bg-zinc-800" rows={2} />
         <textarea name="compras" onChange={handleChange} placeholder="Já comprou algo da FURIA?" className="w-full p-2 rounded bg-zinc-800" rows={2} />
 
-        {/* Upload com legenda */}
         <div className="space-y-1">
           <label className="text-sm font-semibold text-gray-300">
             📷 Envie sua melhor foto de perfil ou um documento de identificação (RG, CNH...)
@@ -124,6 +138,14 @@ const KnowYourFan = () => {
         <input name="instagram" onChange={handleChange} placeholder="Link do seu Instagram" className="w-full p-2 rounded bg-zinc-800" />
         <input name="youtube" onChange={handleChange} placeholder="Link do seu canal no YouTube" className="w-full p-2 rounded bg-zinc-800" />
         <input name="twitch" onChange={handleChange} placeholder="Link da sua Twitch" className="w-full p-2 rounded bg-zinc-800" />
+
+        <textarea
+          name="perfilEsports"
+          onChange={handleChange}
+          placeholder="Cole aqui seu perfil do HLTV, Faceit, Steam ou outro relacionado a eSports"
+          className="w-full p-2 rounded bg-zinc-800"
+          rows={2}
+        />
 
         <button type="submit" className="w-full bg-fuchsia-600 hover:bg-fuchsia-700 p-2 rounded font-bold mt-4">
           Enviar
