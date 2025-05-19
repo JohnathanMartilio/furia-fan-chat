@@ -1,4 +1,4 @@
-# FURIA FAN CHAT – Know Your Fan 🧠🔥
+# FURIA FAN CHAT - 𓆩🖤𓆪🔥
 
 Solução interativa desenvolvida para o desafio de estágio da FURIA Esports, com foco em conhecer profundamente os torcedores e proporcionar experiências personalizadas a partir de dados estratégicos.
 
